@@ -3,14 +3,18 @@ import Link from "next/link";
 const LandingPage = () => {
   return (
     <div>
-      Landing Page (Unprotected)
+      <p>Landing Page (Unprotected)</p> 
+      <p className="font-light">You may explore the UI, but if you want to use OpenAI you have to sign-in to provide user authentication</p> 
       <div>
-        <Link href='/sign-in'>
+        <Link href="/sign-in">
           <Button>Sign in</Button>
-        </Link> 
-        <Link href='/sign-up'>
+        </Link>
+        <Link href="/sign-up">
           <Button>Register</Button>
-        </Link> 
+        </Link>
+        <Link href="/dashboard">
+          <Button>UI Demo</Button>
+        </Link>
       </div>
     </div>
   );

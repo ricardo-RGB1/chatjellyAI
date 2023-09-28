@@ -97,14 +97,14 @@ const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
           <Link href="https://www.apple.com/" target="_blank">
             <Button
               size="sm"
-              className="bg-slate-600 shadow-lg shadow-slate-500/50 
-            hover:bg-slate-500/90  hover:shadow-neutral-500/50 good-times tracking-normal"
+              className="bg-slate-600 shadow-xl shadow-slate-500/50 
+            hover:bg-slate-500/90  hover:shadow-slate-500/50 good-times tracking-normal"
             >
               STARCHAT
             </Button>
           </Link>
           <p className="text-white/50 mt-4 text-sm font-light">
-            Try STARCHAT{"\u00AE"} for fun
+            Try STARCHAT{"\u00AE"} for fun!
           </p>
         </div>
       </div>

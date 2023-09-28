@@ -57,7 +57,7 @@ const ChatPage = () => {
 
   return (
     <div>
-      <Heading title="Chats" description="What do you want to chat about?" />
+      <Heading title="Chat" description="What do you want to chat about?" />
       <div className="px-5 lg:px-8">
         <div>
           <Form {...form}>
