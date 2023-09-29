@@ -4,7 +4,7 @@ const LandingPage = () => {
   return (
     <div>
       <p>Landing Page (Unprotected)</p> 
-      <p className="font-light">You may explore the UI, but if you want to use OpenAI you have to sign-in to provide user authentication</p> 
+      <p className="font-light">You may explore the UI without signing in, but if you want to use OpenAI you have to sign in and provide user authentication</p> 
       <div>
         <Link href="/sign-in">
           <Button>Sign in</Button>

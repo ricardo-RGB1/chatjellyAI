@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-// import { ChatCompletionRequestMessage } from "openai"; v3 of openai
+
 import { ChatCompletionMessage } from "openai/resources/chat/index.mjs";
 import Empty from "@/components/empty";
 import Loader from "@/components/loader";
@@ -87,7 +87,7 @@ const ChatPage = () => {
                     </FormControl>
 
                     <Button
-                      className="ml-3 bg-purple-600 hover:bg-purple-500"
+                      className="ml-3 bg-pink-500 hover:bg-pink-600"
                       disabled={isLoading}
                     >
                       <SendHorizonal />

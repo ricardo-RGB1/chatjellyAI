@@ -6,9 +6,14 @@ import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import Sidebar from "./sidebar";
 
-const MobileSidebar = () => {
 
-  // to fix the hydradtion mismatch error 
+const MobileSidebar = ({
+  apiLimitCount = 0
+}: {
+  apiLimitCount: number;
+  isPro: boolean;
+}) => {
+  // to fix the hydradtion mismatch error
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -27,7 +32,7 @@ const MobileSidebar = () => {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="p-0">
-        <Sidebar />
+        <Sidebar apiLimitCount={apiLimitCount} />
       </SheetContent>
     </Sheet>
   );

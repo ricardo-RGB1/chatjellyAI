@@ -1,10 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
-
+import ModalProvider from "@/components/modal-provider";
 
 export const metadata: Metadata = {
-  title: "Jellyfish",
+  title: "chatjelly",
   description: "AI Generator",
 };
 
@@ -17,10 +17,17 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <head>
-        <link rel="stylesheet" href="https://use.typekit.net/agj7gnk.css" />
-        <link rel="stylesheet" href="https://use.typekit.net/aon3rzv.css"></link>
+          <link rel="stylesheet" href="https://use.typekit.net/agj7gnk.css" />
+          <link
+            rel="stylesheet"
+            href="https://use.typekit.net/aon3rzv.css"
+          ></link>
         </head>
-        <body>{children}</body>
+        <body>
+          <ModalProvider />
+          {children}
+          
+        </body>
       </html>
     </ClerkProvider>
   );

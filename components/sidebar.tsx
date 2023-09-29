@@ -18,11 +18,11 @@ import { Button } from "./ui/button";
 import FreeCounter from "./free-counter";
 
 const routes = [
-  {
-    label: "Dashboard",
-    icon: LayoutDashboard,
-    href: "/dashboard",
-  },
+  // {
+  //   label: "Dashboard",
+  //   icon: LayoutDashboard,
+  //   href: "/dashboard",
+  // },
   {
     label: "Chat",
     icon: MessageSquare,
@@ -70,7 +70,7 @@ const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
           <div className="relative w-8 h-8 mr-4 ">
             <Image fill alt="Logo" src="/logo.svg"/>
           </div>
-          <h1 className="cocon-pro text-2xl text-violet-50 ml-[-8px]">jellyfish</h1>
+          <h1 className="cocon-pro text-2xl text-violet-50 ml-[-8px]">chatJelly</h1>
         </Link>
         <div className="space-y-1 ">
           {routes.map((route) => (
@@ -97,8 +97,8 @@ const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
           <Link href="https://www.apple.com/" target="_blank">
             <Button
               size="sm"
-              className="bg-slate-600 shadow-xl shadow-slate-500/50 
-            hover:bg-slate-500/90  hover:shadow-slate-500/50 good-times tracking-normal"
+              className="bg-slate-600 border-2 border-slate-500/90  
+            hover:bg-slate-500 hover:shadow-xl  hover:shadow-slate-600/80 good-times tracking-normal transition"
             >
               STARCHAT
             </Button>

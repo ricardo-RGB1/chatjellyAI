@@ -85,7 +85,7 @@ const ImagePage = () => {
                     </FormControl>
 
                     <Button
-                      className="ml-3 bg-purple-600 hover:bg-purple-500"
+                      className="ml-3 bg-pink-500 hover:bg-pink-600"
                       disabled={isLoading}
                     >
                       <SendHorizonal />
