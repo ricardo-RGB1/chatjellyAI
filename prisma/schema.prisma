@@ -12,10 +12,23 @@ datasource db {
 }
 
 //  Prisma schema definition for a UserApiLimit model.
+//  - defines the structure of the UserApiLimit table in a database.
 model UserApiLimit {
   id String @id @default(cuid())
   userId String @unique
   count Int @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+
+//  Prisma schema definition for a UserSubscription model.
+//  - defines the structure of the UserSubscription table in a database.
+model UserSubscription {
+  id String @id @default(cuid())
+  userId String @unique
+  stripeCustomerId String? @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId String? @unique @map(name: "stripe_subscription_id")
+  stripePriceId String? @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
 }

@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useProModal } from "@/hooks/use-pro-modal";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
@@ -21,6 +22,7 @@ import { formSchema,  amountOptions, resolutionOptions } from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const ImagePage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
 
@@ -46,8 +48,10 @@ const ImagePage = () => {
       setImages(urls);
       form.reset();
     } catch (error: any) {
-      // TODO: Open Pro Modal
-      console.log(error);
+      // open the modal when the user has reached the limit of free generations
+      if(error?.response?.status === 403) {
+        proModal.onOpen(); 
+      }
     } finally {
       router.refresh();
     }

@@ -7,9 +7,10 @@ import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useProModal } from "@/hooks/use-pro-modal";
 import Empty from "@/components/empty";
 import Loader from "@/components/loader";
-import { cn } from "@/lib/utils";
+
 
 
 import { useForm } from "react-hook-form";
@@ -18,6 +19,7 @@ import formSchema from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const VideoPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [video, setVideo] = useState<string>();
 
@@ -40,8 +42,10 @@ const VideoPage = () => {
       form.reset();
 
     } catch (error: any) {
-      // TODO: Open Pro Modal
-      console.log(error);
+       // open the modal when the user has reached the limit of free generations
+       if(error?.response?.status === 403) {
+        proModal.onOpen(); 
+      }
     } finally {  
       router.refresh();
     }

@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 import { ChatCompletionMessage } from "openai/resources/chat/index.mjs";
 import Empty from "@/components/empty";
@@ -21,6 +22,7 @@ import formSchema from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const ChatPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<ChatCompletionMessage[]>([]);
 
@@ -45,10 +47,13 @@ const ChatPage = () => {
         messages: newMessage,
       });
 
-      setMessages((current) => [...current, userMessage, response.data]);
+      setMessages((current) => [...current, userMessage, response.data]); // update the messages array with the new user message and the response from the server
       form.reset();
     } catch (error: any) {
-      // TODO: Open Pro Modal
+      // open the modal when the user has reached the limit of free generations
+      if(error?.response?.status === 403) {
+        proModal.onOpen(); 
+      }
       console.log(error);
     } finally {
       router.refresh(); // all server components will be re-rendered with new data (and update the UI)

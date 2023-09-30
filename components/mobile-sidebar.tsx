@@ -6,13 +6,7 @@ import { Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import Sidebar from "./sidebar";
 
-
-const MobileSidebar = ({
-  apiLimitCount = 0
-}: {
-  apiLimitCount: number;
-  isPro: boolean;
-}) => {
+const MobileSidebar = ({ apiLimitCount = 0 }) => {
   // to fix the hydradtion mismatch error
   const [isMounted, setIsMounted] = useState(false);
 
