@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { Badge } from "./ui/badge";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Check, Code, Image, MessageSquare, Music, Video, Zap } from "lucide-react";
@@ -7,46 +8,71 @@ import { useProModal } from "@/hooks/use-pro-modal";
 import { Card } from "./ui/card";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
+import { useState } from "react";
+
+
+
+const tools = [
+  {
+    label: "Chat",
+    icon: MessageSquare,
+    color: "text-violet-500",
+    bgColor: "bg-violet-500/10",
+    href: "/chat",
+  },
+  {
+    label: "Image",
+    icon: Image,
+    color: "text-emerald-500",
+    bgColor: "bg-emerald-500/10",
+    href: "/image",
+  },
+  {
+    label: "Video",
+    icon: Video,
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10",
+    href: "/video",
+  },
+  {
+    label: "Music",
+    icon: Music,
+    color: "text-pink-500",
+    bgColor: "bg-pink-500/10",
+    href: "/music",
+  },
+  {
+    label: "Code",
+    icon: Code,
+    color: "text-yellow-500",
+    bgColor: "bg-yellow-500/10",
+    href: "/code",
+  },
+];
+
+
+
 
 const ProModal = () => {
   const proModal = useProModal();
-  const tools = [
-    {
-      label: "Chat",
-      icon: MessageSquare,
-      color: "text-violet-500",
-      bgColor: "bg-violet-500/10",
-      href: "/chat",
-    },
-    {
-      label: "Image",
-      icon: Image,
-      color: "text-emerald-500",
-      bgColor: "bg-emerald-500/10",
-      href: "/image",
-    },
-    {
-      label: "Video",
-      icon: Video,
-      color: "text-orange-500",
-      bgColor: "bg-orange-500/10",
-      href: "/video",
-    },
-    {
-      label: "Music",
-      icon: Music,
-      color: "text-pink-500",
-      bgColor: "bg-pink-500/10",
-      href: "/music",
-    },
-    {
-      label: "Code",
-      icon: Code,
-      color: "text-yellow-500",
-      bgColor: "bg-yellow-500/10",
-      href: "/code",
-    },
-  ];
+  const [loading, setLoading] = useState(false);
+
+
+  // the onSubscribe function is called when the user clicks on the upgrade button
+  const onSubscribe = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get("/api/stripe");
+      window.location.href = response.data.url; 
+    } catch(error) {
+      console.log(error, "STRIPE_CLIENT_ERROR"); 
+    } finally{
+      setLoading(false);
+    }
+  }
+
+
+
 
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
@@ -78,6 +104,7 @@ const ProModal = () => {
         </DialogHeader>
         <DialogFooter>
           <Button 
+            onClick={onSubscribe}
             variant='premium' 
             className="hover:from-cyan-500 hover:to-blue-500 w-full font-semibold"
             size='lg'>
