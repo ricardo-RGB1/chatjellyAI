@@ -78,8 +78,11 @@ export async function POST(req: Request) {
 // This code is useful for handling the checkout.session.completed event from Stripe and updating the userSubscription table in a database with the subscription information. The code creates a new record in the userSubscription table for each new subscription.
 
 
+
 // CHECK IF USER UPGRADED THEIR SUBSCRIPTION ************
 // This code is a webhook endpoint that listens for the invoice.payment_succeeded event from Stripe.
 
 // When the event is received, the function retrieves the subscription information from Stripe using the stripe.subscriptions.retrieve function. It then updates the userSubscription table in a database using the prismadb library.
 
+
+// acct_1NvhLTJXr7JSwWKW stripe account

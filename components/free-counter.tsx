@@ -9,16 +9,21 @@ import { useProModal } from "@/hooks/use-pro-modal";
 
 interface FreeCounterProps {
   apiLimitCount: number;
+  isPro: boolean;
 }
 
-const FreeCounter = ({ apiLimitCount = 0 }: FreeCounterProps) => {
+const FreeCounter = ({ apiLimitCount = 0, isPro = false }: FreeCounterProps) => {
   const proModal = useProModal();
+
+
   // Prevent hydration mismatch warning on client: meaning, this component is only rendered on the client side
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
   if (!mounted) return null;
+
+  if(isPro) return null; // If user is pro, don't render this component
 
   return (
     <div className="px-3">

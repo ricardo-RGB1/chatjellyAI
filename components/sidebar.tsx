@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import {
   Code,
   ImageIcon,
-  LayoutDashboard,
   MessageSquare,
   Music,
   Settings,
@@ -58,9 +57,10 @@ const routes = [
 // create an interface for Sidebar so it accepts a prop of type count
 interface SidebarProps {
   apiLimitCount: number;
+  isPro: boolean;
 }
 
-const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
+const Sidebar = ({ apiLimitCount = 0, isPro = false }: SidebarProps) => {
   const pathname = usePathname();
 
   return (
@@ -68,9 +68,11 @@ const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
       <div className="px-2 py-2 flex-1">
         <Link href="/dashboard" className="flex items-center px-4 mb-11">
           <div className="relative w-8 h-8 mr-4 ">
-            <Image fill alt="Logo" src="/logo.svg"/>
+            <Image fill alt="Logo" src="/logo.svg" />
           </div>
-          <h1 className="cocon-pro text-2xl text-violet-50 ml-[-8px]">chatJelly</h1>
+          <h1 className="cocon-pro text-2xl text-violet-50 ml-[-8px]">
+            chatJelly
+          </h1>
         </Link>
         <div className="space-y-1 ">
           {routes.map((route) => (
@@ -108,7 +110,7 @@ const Sidebar = ({ apiLimitCount = 0 }: SidebarProps) => {
           </p>
         </div>
       </div>
-      <FreeCounter apiLimitCount={apiLimitCount} />
+      <FreeCounter apiLimitCount={apiLimitCount} isPro={isPro} />
     </div>
   );
 };
