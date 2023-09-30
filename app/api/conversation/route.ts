@@ -2,12 +2,11 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY
-  });
-
-
+  apiKey: process.env.OPENAI_API_KEY,
+});
 
 // ********** API ROUTE **********
 export async function POST(req: Request) {
@@ -28,23 +27,25 @@ export async function POST(req: Request) {
       return new NextResponse("Messages are required", { status: 400 });
     }
 
-    // Check if user has reached the free trial limit
     const freeTrial = await checkApiLimit();
-    
-    if(!freeTrial) {
+    const isPro = await checkSubscription();
+
+    // If the user is not subscribed to pro plan and the free trial limit is reached, return 403
+    if (!freeTrial && !isPro) {
       return new NextResponse("Free trial limit reached", { status: 403 });
     }
-    
+
     const chatCompletion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
       messages,
     });
 
-     // Increase the API limit for the user
-     await increaseApiLimit();
+    // Increase the API limit if the user is NOT subscribed to pro plan
+    if (!isPro) {
+      await increaseApiLimit();
+    }
 
     return NextResponse.json(chatCompletion.choices[0].message);
-
   } catch (error) {
     console.log("[COVERSATION_ERROR]", error);
     return new NextResponse("Internal Server Error", { status: 500 });

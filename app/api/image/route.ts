@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY, // This is also the default, can be omitted
@@ -33,10 +34,11 @@ export async function POST(req: Request) {
       return new NextResponse("Resolution is required", { status: 400 });
     }
 
-    // Check if user has reached the free trial limit
     const freeTrial = await checkApiLimit();
+    const isPro = await checkSubscription();
 
-    if (!freeTrial) {
+    // If the user is not subscribed to pro plan and the free trial limit is reached, return 403
+    if (!freeTrial && !isPro) {
       return new NextResponse("Free trial limit reached", { status: 403 });
     }
 
@@ -46,7 +48,10 @@ export async function POST(req: Request) {
       size: resolution,
     });
 
-    await increaseApiLimit();
+    // Increase the API limit if the user is NOT subscribed to pro plan
+    if (!isPro) {
+      await increaseApiLimit();
+    }
 
     return NextResponse.json(imageCompletion.data);
   } catch (error) {
