@@ -37,7 +37,7 @@ const LandingHero = () => {
         <p className="underline underline-offset-4 pb-2">PLEASE NOTE</p>
         <p className="text-left">
           In order to use chatJelly, you
-          <span className="italic">MUST </span>sign up to provide
+          <span className="italic"> MUST </span>sign up to provide
           authentication. You may explore only the UI without signing up.
         </p>
       </div>
