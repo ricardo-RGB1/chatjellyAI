@@ -23,13 +23,13 @@ export const LandingNavbar = () => {
                     chatJelly
                 </h1>
             </Link>
-            {/* <div className="flex items-center gap-x-2">
+            <div className="flex items-center gap-x-2">
                 <Link href={isSignedIn ? "/chat" : "/sign-up"}>
                     <Button variant='outline' className="hover:bg-slate-200">
-                        Get Started
+                        Sign in
                     </Button>
                 </Link>
-            </div> */}
+            </div>
         </nav>
     )
 }
