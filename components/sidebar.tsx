@@ -99,7 +99,7 @@ const Sidebar = ({ apiLimitCount = 0, isPro = false }: SidebarProps) => {
         {/* LINK TO STARCHAT */}
           <div className="p-3 ml-2 flex flex-col justify-left items-center mt-14">
 
-            <Link href="https://www.apple.com/" target="_blank">
+            <Link href="http://localhost:3000/" target="_blank">
               <Button
                 size="sm"
                 className="bg-slate-600 border-2 border-slate-500/90  
