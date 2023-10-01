@@ -3,9 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@clerk/nextjs"; // used for client side auth
-
-
-
+import { Button } from "./ui/button";
 
 
 export const LandingNavbar = () => {
