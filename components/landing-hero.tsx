@@ -36,9 +36,7 @@ const LandingHero = () => {
       <div className="border-2 border-white/10 flex flex-col items-center mx-auto text-zinc-400 text-sm md:text-lg font-normal w-72 md:w-[340px] p-5 md:p-6 bg-[#6085d41b] rounded-lg ">
         <p className="underline underline-offset-4 pb-2">PLEASE NOTE</p>
         <p className="text-left">
-          In order to use chatJelly, you
-          <span className="italic"> MUST </span>sign up to provide
-          authentication. You may explore only the UI without signing up.
+          In order to use chatJelly, please sign up to provide authentication. You may explore only the UI without signing up.
         </p>
       </div>
     </div>
