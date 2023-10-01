@@ -1,4 +1,4 @@
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";  
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { ChatCompletionMessage } from "openai/resources/chat/index.mjs";
