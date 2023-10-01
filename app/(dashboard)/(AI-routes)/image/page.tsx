@@ -13,6 +13,7 @@ import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import Empty from "@/components/empty";
 import Loader from "@/components/loader";
+import toast from "react-hot-toast";
 
 import { cn } from "@/lib/utils";
 
@@ -51,7 +52,10 @@ const ImagePage = () => {
       // open the modal when the user has reached the limit of free generations
       if(error?.response?.status === 403) {
         proModal.onOpen(); 
+      } else {
+        toast.error("Something went wrong");
       }
+      
     } finally {
       router.refresh();
     }

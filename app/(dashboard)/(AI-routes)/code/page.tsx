@@ -8,6 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useProModal } from "@/hooks/use-pro-modal";
+import toast from "react-hot-toast";
 
 import { ChatCompletionMessage } from "openai/resources/chat/index.mjs";
 import Empty from "@/components/empty";
@@ -54,6 +55,8 @@ const CodePage = () => {
       // open the modal when the user has reached the limit of free generations
       if(error?.response?.status === 403) {
         proModal.onOpen(); 
+      } else {
+        toast.error("Something went wrong");
       }
     } finally {
       router.refresh(); // this will rehydrate all server components fetching the new data

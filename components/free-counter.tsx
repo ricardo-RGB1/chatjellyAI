@@ -6,6 +6,7 @@ import { MAX_FREE_COUNTS } from "@/constants";
 import { Button } from "./ui/button";
 import { Zap } from "lucide-react";
 import { useProModal } from "@/hooks/use-pro-modal";
+import { useAuth } from "@clerk/nextjs"; // used for client side auth
 
 interface FreeCounterProps {
   apiLimitCount: number;
@@ -14,6 +15,7 @@ interface FreeCounterProps {
 
 const FreeCounter = ({ apiLimitCount = 0, isPro = false }: FreeCounterProps) => {
   const proModal = useProModal();
+  const { isSignedIn } = useAuth();
 
 
   // Prevent hydration mismatch warning on client: meaning, this component is only rendered on the client side
@@ -24,6 +26,8 @@ const FreeCounter = ({ apiLimitCount = 0, isPro = false }: FreeCounterProps) => 
   if (!mounted) return null;
 
   if(isPro) return null; // If user is pro, don't render this component
+
+  if(!isSignedIn && !isPro) return null; // If user is not logged in and not pro, don't render this component
 
   return (
     <div className="px-3">

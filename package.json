@@ -36,6 +36,7 @@
     "react-adobe-fonts": "^0.1.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.46.1",
+    "react-hot-toast": "^2.4.1",
     "react-markdown": "^8.0.7",
     "replicate": "^0.18.0",
     "stripe": "^13.8.0",
@@ -43,6 +44,7 @@
     "tailwindcss": "3.3.3",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.2.2",
+    "typewriter-effect": "^2.21.0",
     "zod": "^3.22.2",
     "zustand": "^4.4.1"
   },
