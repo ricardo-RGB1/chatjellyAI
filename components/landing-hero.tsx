@@ -36,7 +36,7 @@ const LandingHero = () => {
       <div className="border-2 border-white/10 flex mt-24 flex-col items-center mx-auto text-zinc-400 text-sm md:text-lg font-light w-72 md:w-[375px] p-4 md:p-6 bg-[#6085d41b] rounded-lg ">
         <p className="underline underline-offset-4 pb-2 font-semibold">PLEASE NOTE</p>
         <p className="text-left">
-          In order to use chatJelly and the complementary app STARCHAT, you will need to create a free account after clicking<span className="font-semibold text-zinc-200"> Get Started.</span> OpenAI will not work without user authentication.
+          In order to use chatJelly you will need to create a free account after clicking<span className="font-semibold text-zinc-200"> Get Started.</span> OpenAI will not work without user authentication.
         </p>
       </div>
     </div>
